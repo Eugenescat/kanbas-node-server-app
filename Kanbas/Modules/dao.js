@@ -1,8 +1,13 @@
 import ModuleModel from "./model.js";
 
 export const createModule = async (module) => {
-    const newModule = await ModuleModel.create(module);
-    return newModule;
+    try {
+        const newModule = await ModuleModel.create(module);
+        return newModule;
+    } catch (error) {
+        console.error('Error creating module:', error);  // 打印详细错误信息
+        throw error;
+    }
 };
 
 export const updateModule = async (moduleId, module) => {
